@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @font-face {
+            font-family: 'VariableFont';
+            src: url('static/my_font.ttf') format('truetype-variations');
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .font-preview {
+            font-size: 70px;
+            margin-top: 60px;
+			font-family: 'VariableFont';
+			text-align: center;
+        }
+    </style>
+</head>
+<body>
+	<h1>Vital signs</h1>
+    <ul id="data-list">
+        <!-- Placeholder list items for initial display -->
+        <li>Loading...</li>
+        <li>Loading...</li>
+        <li>Loading...</li>
+    </ul>
+    <div class="font-preview">Types per minute</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.js"></script>
+    <script type="text/javascript">
+        const fontPreview = document.querySelector('.font-preview');
+
+        // Update the font preview text with the received font settings
+        function updateFontPreview(temp, osat, hrat) {
+            const fontSettings = `'temp' ${temp}, 'osat' ${osat}, 'hrat' ${hrat}`;
+            fontPreview.style.fontVariationSettings = fontSettings;
+        }
+
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/');
+
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected from server');
+        });
+
+        socket.on('update', function(data) {
+            var dataList = document.getElementById('data-list');
+            dataList.innerHTML = '';  // Clear the list
+
+			var constants = ['Heart rate (BPM): ', 'Oxygen saturation (%): ', 'Body temperature (ºC): ']
+			
+			// Update the list with the received raw data (assuming it's an array)
+            var rawdata = data[0];
+            rawdata.forEach(function(value, index) {
+                var listItem = document.createElement('li');
+                listItem.textContent = constants[index] + value;
+                dataList.appendChild(listItem);
+            });
+			
+			var processedData = data[1];
+            var osat = processedData[1].toFixed(1);
+            var temp = processedData[0].toFixed(1);
+            var hrat = parseInt(processedData[2]);
+			
+			
+            // Do something with the received data
+            console.log("Received data: osat =", osat, "temp =", temp, "hrat =", hrat);
+
+            // Call the updateFontPreview function with the received font settings
+            updateFontPreview(temp, osat, hrat);
+        });
+    </script>
+</body>
+</html>
