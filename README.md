@@ -14,4 +14,4 @@ List of requirements:
 - Arduino board (tested with Arduino UNO) and MAX30102 sensor (see https://lastminuteengineers.com/max30102-pulse-oximeter-heart-rate-sensor-arduino-tutorial/?utm_content=cmp-true)
 - Python 3 with the packages: numpy, flask, flask_socketio, serial.
 - Arduino IDE or equivalent.
-- A web browser.
+- Web browser.
