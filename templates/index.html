@@ -58,14 +58,14 @@
             var rawdata = data[0];
             rawdata.forEach(function(value, index) {
                 var listItem = document.createElement('li');
-                listItem.textContent = constants[index] + value;
+                listItem.textContent = constants[index] + value.toFixed(1);
                 dataList.appendChild(listItem);
             });
 			
-			var processedData = data[1];
-            var osat = processedData[1].toFixed(1);
-            var temp = processedData[0].toFixed(1);
-            var hrat = parseInt(processedData[2]);
+	    var processedData = data[1];
+            var osat = processedData[1];
+            var temp = processedData[2];
+            var hrat = processedData[0];
 			
 			
             // Do something with the received data
