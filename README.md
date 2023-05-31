@@ -5,6 +5,8 @@ Displays a text in a variable font (.ttf) which depends on 3 parameters:
 - Oxygen saturation
 - Body temperature
 
+The variable font "TPM" is a 3-axes variable typeface for health data visualization, designed by Mrs. Sara Barcons (no copyright).
+
 These vital signs are collected with an arduino equipped with a MAX30102 sensor. We have written an arduino code "tpm_max30102.ino" to collect them.
 
 We make use of a python server "server.py" to read the vital signs from the arduino, processes them 
