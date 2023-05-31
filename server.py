@@ -5,13 +5,13 @@ import numpy as np
 
 ########################################################
 hrat_limits = [40, 120]
-osat_limits = [80, 100]
+osat_limits = [90, 100]
 temp_limits = [28, 36]
 font_limits = [100,600]
 #################################################
 
 hrat_range = np.linspace(hrat_limits[0],hrat_limits[1],100)
-osat_range = np.linspace(osat_limits[1],osat_limits[0],100)
+osat_range = np.linspace(osat_limits[0],osat_limits[1],100)
 temp_range = np.linspace(temp_limits[0],temp_limits[1],100)
 font_range = np.linspace(font_limits[0],font_limits[1],100)
 
