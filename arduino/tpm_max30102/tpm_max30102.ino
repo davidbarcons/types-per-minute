@@ -108,7 +108,7 @@ float calculateOxygenSaturation()
   // We should use calibration data and more sophisticated algorithms for better accuracy
   // e.g. https://www.analog.com/en/technical-articles/guidelines-for-spo2-measurement--maxim-integrated.html
   // This is a rude implementation
-  float oxygenSaturation = 110 - 25 * ratio;
+  float oxygenSaturation = 114 - 25 * ratio;
 
   return oxygenSaturation;
 }
